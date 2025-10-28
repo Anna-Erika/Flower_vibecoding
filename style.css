@@ -392,3 +392,415 @@ body{
         opacity: 0.5;
     }
 }
+
+/* Бабочка */
+.butterfly {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10vmin;
+    height: 8vmin;
+    display: none;
+    opacity: 0;
+}
+
+.butterfly.visible {
+    display: block;
+    animation: butterfly-appear 2s ease-out forwards, butterfly-fly-circle 10s linear 2s infinite;
+}
+
+@keyframes butterfly-appear {
+    0% {
+        top: 55%;
+        left: 55%;
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.butterfly__body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.2vmin;
+    height: 5vmin;
+    background: linear-gradient(to bottom, #2c1810 0%, #2c1810 20%, #1a0f08 40%, #1a0f08 100%);
+    border-radius: 1vmin;
+    clip-path: polygon(
+        50% 0%,
+        70% 5%,
+        80% 15%,
+        70% 25%,
+        60% 35%,
+        55% 40%,
+        60% 45%,
+        70% 55%,
+        75% 70%,
+        70% 85%,
+        50% 100%,
+        30% 85%,
+        25% 70%,
+        30% 55%,
+        40% 45%,
+        45% 40%,
+        40% 35%,
+        30% 25%,
+        20% 15%,
+        30% 5%
+    );
+    z-index: 3;
+}
+
+.butterfly__body::before {
+    content: '';
+    position: absolute;
+    top: -0.6vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1vmin;
+    height: 1vmin;
+    background: #1a0f08;
+    border-radius: 50%;
+}
+
+.butterfly__body::after {
+    content: '';
+    position: absolute;
+    top: -1vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.2vmin;
+    height: 1.2vmin;
+    background: #1a0f08;
+    border-radius: 0.1vmin;
+}
+
+/* Усики бабочки */
+.butterfly__antenna {
+    position: absolute;
+    top: 5%;
+    width: 0;
+    height: 0;
+    border: 0.08vmin solid transparent;
+    border-left: 0.08vmin solid #2c1810;
+    border-radius: 50%;
+    z-index: 4;
+}
+
+.butterfly__antenna--left {
+    left: 47%;
+    width: 1.5vmin;
+    height: 2vmin;
+    border-top-left-radius: 2vmin 2vmin;
+    border-bottom-left-radius: 0;
+    border-right: none;
+    transform: rotate(-20deg);
+}
+
+.butterfly__antenna--right {
+    right: 47%;
+    width: 1.5vmin;
+    height: 2vmin;
+    border-top-right-radius: 2vmin 2vmin;
+    border-bottom-right-radius: 0;
+    border-left: none;
+    border-right: 0.08vmin solid #2c1810;
+    transform: rotate(20deg);
+}
+
+.butterfly__wing {
+    position: absolute;
+    left: 50%;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #8b3a62 100%);
+    z-index: 1;
+}
+
+/* Верхние большие крылья */
+.butterfly__wing--top-left,
+.butterfly__wing--top-right {
+    width: 4vmin;
+    height: 5vmin;
+    top: 15%;
+}
+
+.butterfly__wing--top-left {
+    transform: translateX(-100%);
+    transform-origin: right center;
+    animation: wing-flap-left 0.3s ease-in-out infinite;
+    border-radius: 0% 50% 50% 50%;
+    background:
+        radial-gradient(ellipse at 100% 50%, rgba(255, 168, 197, 0.2) 0%, rgba(255, 168, 197, 0.4) 20%, rgba(255, 107, 157, 0.5) 40%, rgba(255, 107, 157, 0.65) 60%, rgba(196, 69, 105, 0.8) 80%, rgba(196, 69, 105, 0.9) 100%);
+}
+
+.butterfly__wing--top-right {
+    transform: translateX(0%);
+    transform-origin: left center;
+    animation: wing-flap-right 0.3s ease-in-out infinite;
+    border-radius: 50% 0% 50% 50%;
+    background:
+        radial-gradient(ellipse at 0% 50%, rgba(255, 168, 197, 0.2) 0%, rgba(255, 168, 197, 0.4) 20%, rgba(255, 107, 157, 0.5) 40%, rgba(255, 107, 157, 0.65) 60%, rgba(196, 69, 105, 0.8) 80%, rgba(196, 69, 105, 0.9) 100%);
+}
+
+/* Нижние маленькие крылья */
+.butterfly__wing--bottom-left,
+.butterfly__wing--bottom-right {
+    width: 3vmin;
+    height: 3.5vmin;
+    top: 55%;
+}
+
+.butterfly__wing--bottom-left {
+    transform: translateX(-100%);
+    transform-origin: right center;
+    animation: wing-flap-left 0.3s ease-in-out infinite;
+    border-radius: 50% 50% 50% 0%;
+    background:
+        radial-gradient(ellipse at 100% 30%, rgba(255, 168, 197, 0.2) 0%, rgba(255, 168, 197, 0.4) 20%, rgba(255, 107, 157, 0.5) 40%, rgba(255, 107, 157, 0.65) 60%, rgba(196, 69, 105, 0.8) 80%, rgba(196, 69, 105, 0.9) 100%);
+}
+
+.butterfly__wing--bottom-right {
+    transform: translateX(0%);
+    transform-origin: left center;
+    animation: wing-flap-right 0.3s ease-in-out infinite;
+    border-radius: 50% 50% 0% 50%;
+    background:
+        radial-gradient(ellipse at 0% 30%, rgba(255, 168, 197, 0.2) 0%, rgba(255, 168, 197, 0.4) 20%, rgba(255, 107, 157, 0.5) 40%, rgba(255, 107, 157, 0.65) 60%, rgba(196, 69, 105, 0.8) 80%, rgba(196, 69, 105, 0.9) 100%);
+}
+
+/* Узоры на крыльях */
+.butterfly__wing::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 0.8vmin;
+    height: 0.8vmin;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+.butterfly__wing::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5vmin;
+    height: 0.5vmin;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+@keyframes wing-flap-left {
+    0%, 100% {
+        transform: translateX(-100%) rotateY(0deg);
+    }
+    50% {
+        transform: translateX(-100%) rotateY(-30deg);
+    }
+}
+
+/* Маленькая бабочка */
+.butterfly--small {
+    top: 50%;
+    left: 40%;
+    width: 6vmin;
+    height: 5vmin;
+}
+
+.butterfly--small.visible {
+    animation: butterfly-appear-small 2s ease-out forwards, butterfly-fly-circle-small 6s ease-in-out 2s infinite;
+}
+
+@keyframes butterfly-appear-small {
+    0% {
+        top: 55%;
+        left: 35%;
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    100% {
+        top: 50%;
+        left: 40%;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes butterfly-fly-circle-small {
+    0%, 100% {
+        transform: translateY(0vmin);
+    }
+    50% {
+        transform: translateY(-1vmin);
+    }
+}
+
+.butterfly--small .butterfly__body {
+    width: 0.8vmin;
+    height: 3vmin;
+}
+
+.butterfly--small .butterfly__wing--top-left,
+.butterfly--small .butterfly__wing--top-right {
+    width: 2.5vmin;
+    height: 3vmin;
+}
+
+.butterfly--small .butterfly__wing--bottom-left,
+.butterfly--small .butterfly__wing--bottom-right {
+    width: 2vmin;
+    height: 2.2vmin;
+}
+
+.butterfly--small .butterfly__antenna {
+    width: 0;
+    height: 0;
+    border: 0.05vmin solid transparent;
+}
+
+.butterfly--small .butterfly__antenna--left {
+    width: 1vmin;
+    height: 1.3vmin;
+    border-left: 0.05vmin solid #2c1810;
+}
+
+.butterfly--small .butterfly__antenna--right {
+    width: 1vmin;
+    height: 1.3vmin;
+    border-right: 0.05vmin solid #2c1810;
+}
+
+/* Самая маленькая бабочка */
+.butterfly--tiny {
+    top: 45%;
+    left: 60%;
+    width: 4vmin;
+    height: 3.5vmin;
+}
+
+.butterfly--tiny.visible {
+    animation: butterfly-appear-tiny 2s ease-out forwards, butterfly-fly-tiny 5s ease-in-out 2s infinite;
+}
+
+@keyframes butterfly-appear-tiny {
+    0% {
+        top: 50%;
+        left: 47%;
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    100% {
+        top: 45%;
+        left: 60%;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes butterfly-fly-tiny {
+    0%, 100% {
+        transform: translateY(0vmin) translateX(0vmin);
+    }
+    50% {
+        transform: translateY(-0.8vmin) translateX(0.5vmin);
+    }
+}
+
+.butterfly--tiny .butterfly__body {
+    width: 0.6vmin;
+    height: 2vmin;
+}
+
+.butterfly--tiny .butterfly__wing--top-left,
+.butterfly--tiny .butterfly__wing--top-right {
+    width: 1.8vmin;
+    height: 2vmin;
+}
+
+.butterfly--tiny .butterfly__wing--bottom-left,
+.butterfly--tiny .butterfly__wing--bottom-right {
+    width: 1.4vmin;
+    height: 1.6vmin;
+}
+
+.butterfly--tiny .butterfly__antenna {
+    width: 0;
+    height: 0;
+    border: 0.04vmin solid transparent;
+}
+
+.butterfly--tiny .butterfly__antenna--left {
+    width: 0.7vmin;
+    height: 1vmin;
+    border-left: 0.04vmin solid #2c1810;
+}
+
+.butterfly--tiny .butterfly__antenna--right {
+    width: 0.7vmin;
+    height: 1vmin;
+    border-right: 0.04vmin solid #2c1810;
+}
+
+@keyframes butterfly-fly-tiny {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0vmin) translateX(0vmin);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-0.8vmin) translateX(0.5vmin);
+    }
+}
+
+@keyframes butterfly-fly-circle-small {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0vmin);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-1vmin);
+    }
+}
+
+@keyframes wing-flap-right {
+    0%, 100% {
+        transform: translateX(0%) rotateY(0deg);
+    }
+    50% {
+        transform: translateX(0%) rotateY(30deg);
+    }
+}
+
+@keyframes butterfly-fly-circle {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(5vmin) rotate(0deg);
+    }
+    12.5% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(10vmin) rotate(-45deg);
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(90deg) translateX(15vmin) rotate(-90deg);
+    }
+    37.5% {
+        transform: translate(-50%, -50%) rotate(135deg) translateX(20vmin) rotate(-135deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) translateX(25vmin) rotate(-180deg);
+    }
+    62.5% {
+        transform: translate(-50%, -50%) rotate(225deg) translateX(20vmin) rotate(-225deg);
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(270deg) translateX(15vmin) rotate(-270deg);
+    }
+    87.5% {
+        transform: translate(-50%, -50%) rotate(315deg) translateX(10vmin) rotate(-315deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(5vmin) rotate(-360deg);
+    }
+}

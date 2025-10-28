@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Цветок в стакане</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <div class="flower">
@@ -53,12 +53,48 @@
         </div>
         <div class="flower__glass"></div>
     </div>
+    
+    <!-- Бабочка 1 -->
+    <div class="butterfly">
+        <div class="butterfly__body"></div>
+        <div class="butterfly__antenna butterfly__antenna--left"></div>
+        <div class="butterfly__antenna butterfly__antenna--right"></div>
+        <div class="butterfly__wing butterfly__wing--top-left"></div>
+        <div class="butterfly__wing butterfly__wing--top-right"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-left"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-right"></div>
+    </div>
+    
+    <!-- Бабочка 2 (меньше) -->
+    <div class="butterfly butterfly--small">
+        <div class="butterfly__body"></div>
+        <div class="butterfly__antenna butterfly__antenna--left"></div>
+        <div class="butterfly__antenna butterfly__antenna--right"></div>
+        <div class="butterfly__wing butterfly__wing--top-left"></div>
+        <div class="butterfly__wing butterfly__wing--top-right"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-left"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-right"></div>
+    </div>
+    
+    <!-- Бабочка 3 (самая маленькая) -->
+    <div class="butterfly butterfly--tiny">
+        <div class="butterfly__body"></div>
+        <div class="butterfly__antenna butterfly__antenna--left"></div>
+        <div class="butterfly__antenna butterfly__antenna--right"></div>
+        <div class="butterfly__wing butterfly__wing--top-left"></div>
+        <div class="butterfly__wing butterfly__wing--top-right"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-left"></div>
+        <div class="butterfly__wing butterfly__wing--bottom-right"></div>
+    </div>
+    
     <div id="timer">60</div>
 
 <script>
     let timer = 60;
     const timerElement = document.getElementById('timer');
     const flower = document.querySelector('.flower');
+    const butterflies = document.querySelectorAll('.butterfly');
+    let butterfliesShown = false;
 
     function updateTimer() {
         timer--;
@@ -69,6 +105,16 @@
             flower.classList.add('wilted');
         }
     }
+
+    // Показываем все бабочки по клику
+    document.addEventListener('click', function(e) {
+        if (!butterfliesShown) {
+            butterflies.forEach(butterfly => {
+                butterfly.classList.add('visible');
+            });
+            butterfliesShown = true;
+        }
+    });
 
     updateTimer();
 </script>
